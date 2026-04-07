@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Hub Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <section
+        id="login-card"
+        class="card"
+        style="max-width: 420px; margin: 60px auto"
+      >
+        <h1>Admin Login</h1>
+        <p><small>Use admin credentials to continue.</small></p>
+        <div class="section">
+          <label for="username">Username</label>
+          <input id="username" type="text" value="admin" />
+        </div>
+        <div class="section">
+          <label for="password">Password</label>
+          <input id="password" type="password" value="Admin@123" />
+        </div>
+        <div class="section">
+          <button id="login-btn" class="btn-primary">Login</button>
+        </div>
+        <div id="login-msg" class="section"></div>
+      </section>
+
+      <section id="admin-app" class="hidden">
+        <div class="card">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              gap: 10px;
+              flex-wrap: wrap;
+            "
+          >
+            <h1>Social Hub Admin Dashboard</h1>
+            <button id="logout-btn" class="btn-danger">Logout</button>
+          </div>
+          <div class="nav" id="tab-nav">
+            <button class="active" data-tab="dashboard">Dashboard</button>
+            <button data-tab="users">Users</button>
+            <button data-tab="posts">Posts</button>
+            <button data-tab="friendships">Friendships</button>
+            <button data-tab="reports">Reports</button>
+            <button data-tab="analytics">Analytics</button>
+          </div>
+        </div>
+
+        <section id="dashboard" class="card section">
+          <h2>Overview</h2>
+          <div class="stats" id="dashboard-stats"></div>
+        </section>
+
+        <section id="users" class="card section hidden">
+          <h2>User Management</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Warnings</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="users-body"></tbody>
+          </table>
+        </section>
+
+        <section id="posts" class="card section hidden">
+          <h2>Post Management</h2>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Content</th>
+                <th>Flagged</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="posts-body"></tbody>
+          </table>
+        </section>
+
+        <section id="friendships" class="card section hidden">
+          <h2>Friendship Management</h2>
+          <div class="grid">
+            <div>
+              <h3>Pending Requests</h3>
+              <div id="requests-box"></div>
+            </div>
+            <div style="grid-column: span 2">
+              <h3>Friends List Overview</h3>
+              <div id="friends-overview"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="reports" class="card section hidden">
+          <h2>Reporting System</h2>
+          <div id="reports-box"></div>
+        </section>
+
+        <section id="analytics" class="card section hidden">
+          <h2>Analytics</h2>
+          <div class="analytics-layout">
+            <div class="analytics-kpis" id="analytics-kpis"></div>
+
+            <div class="analytics-grid">
+              <div class="analytics-card">
+                <h3>Daily Engagement Trend</h3>
+                <canvas id="engagement-chart" height="170"></canvas>
+              </div>
+
+              <div class="analytics-card">
+                <h3>User Growth by Month</h3>
+                <canvas id="growth-chart" height="170"></canvas>
+              </div>
+            </div>
+
+            <div class="analytics-card">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 8px;
+                  flex-wrap: wrap;
+                "
+              >
+                <h3>Professional Analytics Report</h3>
+                <button id="refresh-analytics" class="btn-muted">
+                  Refresh Report
+                </button>
+              </div>
+              <div id="activity-summary"></div>
+              <table class="table" style="margin-top: 10px">
+                <thead>
+                  <tr>
+                    <th>Date/Month</th>
+                    <th>Daily Active Users</th>
+                    <th>Total Posts</th>
+                    <th>New Users</th>
+                  </tr>
+                </thead>
+                <tbody id="analytics-report-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
